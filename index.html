@@ -27,7 +27,10 @@
        background: none;
        -webkit-font-smoothing: antialiased;
    }
-   
+
+   p {
+       font-family: sans-serif;
+   }
    .centered {
     text-align: center;
    }
@@ -44,7 +47,7 @@
        margin: 0 auto;
        min-height: 100vh;
        position: relative;
-       background: #E6E6E6;
+       background: #F9F5EF;
    }
 
    /* Медиа-запросы для больших экранов */
@@ -71,7 +74,8 @@
        display: flex;
        justify-content: center;
        min-height: 100vh;
-       background: #E6E6E6;
+       background: #F9F5EF;
+       font-family: 'A La Russ', serif;
    }
 
    .modal {
@@ -114,6 +118,14 @@
       cursor: pointer;
       z-index: 1001;
   }
+
+  @font-face {
+    font-family: 'A La Russ';
+    src: url('../fonts/a-la-russ-regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
         
         .close:hover {
             opacity: 0.7;
@@ -130,44 +142,43 @@
 </style>
 <title>ГУСЛИ</title>
 </head>
-<body class="font-sans">
+<body>
 <div class="main-container">
   <!-- Навигация -->
   <nav class="fixed top-0 left-1/2 transform -translate-x-1/2 z-50 bg-white/90 backdrop-blur-sm rounded-b-lg px-4 py-2 w-full max-w-[390px] md:max-w-[500px] lg:max-w-[600px]">
     <div class="flex justify-between items-center text-xs">
       <div class="flex items-center">
         <div class="w-11 h-19 mr-4 text-[#904d30] font-bold text-lg">
-          <img src="logo.svg"/>
+          <img src="files/logo.svg"/>
         </div>
       </div>
       <div class="flex space-x-4">
         <a href="#about" class="text-[#191919] hover:text-[#904d30]">О НАС</a>
-        <a href="#kitchen" class="text-[#191919] hover:text-[#904d30]">КУХНЯ</a>
-        <a href="#bar" class="text-[#191919] hover:text-[#904d30]">БАР</a>
+        <a href="/kitchen/">Кухня</a>
+        <a href="/bar/">Бар</a>
         <a href="#contacts" class="text-[#191919] hover:text-[#904d30]">КОНТАКТЫ</a>
       </div>
     </div>
   </nav>
 
   <!-- Главная секция -->
-  <section class="relative h-[577px] mt-16 mx-3 rounded-xl overflow-hidden">
-    <img class="w-full h-full object-cover" src="int1.jpeg" alt="Ресторан Гусли"/>
-    <div class="absolute inset-0 bg-[#191919]/60"></div>
+  <section class="relative h-[460px] mt-16 mx-3 rounded-xl overflow-hidden">
+    <img class="w-full h-full object-cover" src="files/Gusli.webp" alt="Ресторан Гусли"/>
+    <div class="absolute inset-0 bg-[#323232]/50"></div>
     <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white px-8">
       <h1 class="text-3xl md:text-4xl lg:text-5xl leading-tight mb-8 font-light">
-        ГУСЛИ<br/>
-        <span class="text-xl md:text-2xl">Место где традиции<br/>
+        <span class="text-2xl md:text-3xl">Место где традиции<br/>
           и современность идут <br/>
           рука об руку</span>
       </h1>
       <div class="space-y-4 w-full max-w-sm">
-        <a href="/files/menu.pdf" target="_blank" class="block bg-[#904d30] text-white py-3 px-8 rounded-lg font-semibold hover:bg-[#7a4028] transition duration-200">
+        <a href="/files/menu.pdf" target="_blank" class="block bg-[#563729]/80 text-white py-3 px-8 rounded-lg font-semibold hover:bg-[#7a4028] transition duration-200">
           Меню кухни
         </a>
-        <a href="/files/menu.pdf" target="_blank" class="block bg-[#904d30] text-white py-3 px-8 rounded-lg font-semibold hover:bg-[#7a4028] transition duration-200">
+        <a href="/files/menu.pdf" target="_blank" class="block bg-[#563729]/80 text-white py-3 px-8 rounded-lg font-semibold hover:bg-[#7a4028] transition duration-200">
           Барная карта
         </a>
-        <a href="tel:+78162600112" class="block bg-[#904d30] text-white py-3 px-8 rounded-lg font-semibold hover:bg-[#7a4028] transition duration-200">
+        <a href="tel:+78162600112" class="block bg-[#563729]/80 text-white py-3 px-8 rounded-lg font-semibold hover:bg-[#7a4028] transition duration-200">
           Забронировать стол
         </a>
       </div>
@@ -177,7 +188,7 @@
   <!-- О нас -->
   <section id="about" class="bg-[#5E8C61] rounded-xl mx-3 my-6 p-6">
     <div class="text-center mb-6">
-      <h2 class="text-white text-2xl font-semibold mb-4">О РЕСТОРАНЕ ГУСЛИ</h2>
+      <h2 class="text-white text-2xl mb-4">О РЕСТОРАНЕ ГУСЛИ</h2>
       <p class="text-white/90 text-sm leading-relaxed">
         Ресторан «Гусли» — это воплощение нордической философии кулинарии в самом сердце города. 
         Мы верим в силу локальных продуктов и традиционных методов приготовления, которые раскрывают 
@@ -195,81 +206,81 @@
   </section>
 
   <!-- Секция кухни -->
-  <section id="kitchen" class="bg-[#904d30] rounded-xl mx-3 my-6 p-6">
+  <section id="kitchen" class="bg-[#E3D5B9] rounded-xl mx-3 my-6 p-6">
     <div class="grid grid-cols-1 gap-6">
       <div class="text-center">
-        <h2 class="text-white text-xl font-semibold mb-4">КУХНЯ</h2>
-        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 mb-4">
-          <p class="text-white/90 text-xs leading-relaxed italic">
+        <h2 class="text-2xl font-semibold mb-4">КУХНЯ</h2>
+        <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 mb-4">
+          <p class="text-xs leading-relaxed italic">
             "Нордическая кухня — это не просто тренд, это философия. Мы работаем с тем, 
             что дает нам наша земля: корнеплоды, дикие травы, речная рыба, лесные грибы. 
             Каждый ингредиент проходит через мои руки с особым вниманием. Ферментация, 
             копчение, соление — эти древние техники помогают нам создавать блюда, 
             которые рассказывают историю нашего региона."
           </p>
-          <p class="text-white text-xs mt-2 font-semibold">— Данила, шеф-повар</p>
+          <p class="text-xs mt-2 font-semibold">— Данила, шеф-повар</p>
         </div>
-        <a href="/files/menu.pdf" target="_blank" class="block bg-[#E6E6E6] text-[#191919] py-3 px-6 rounded-lg font-semibold hover:bg-[#d6d6d6] transition duration-200">
+        <a href="/files/menu.pdf" target="_blank" class="block bg-[#F9F5EF] text-[#191919] py-3 px-6 rounded-lg font-semibold hover:bg-[#d6d6d6] transition duration-200">
           Меню кухни
         </a>
       </div>
       <div class="grid grid-cols-3 gap-3">
         <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden">
-          <img src="kuh1.JPG" alt="Блюдо" class="w-full h-full object-cover"/>
+          <img src="files/Kuh1.webp" alt="Блюдо" class="w-full h-full object-cover"/>
         </div>
         <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden">
-          <img src="kuh2.JPEG" alt="Блюдо" class="w-full h-full object-cover"/>
+          <img src="files/Kuh2.webp" alt="Блюдо" class="w-full h-full object-cover"/>
         </div>
         <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden">
-          <img src="kuh3.jpeg" alt="Блюдо" class="w-full h-full object-cover"/>
+          <img src="files/Kuh3.webp" alt="Блюдо" class="w-full h-full object-cover"/>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Секция бара -->
-  <section id="bar" class="bg-[#191919] rounded-xl mx-3 my-6 p-6">
+  <section id="bar" class="bg-[#E3D5B9] rounded-xl mx-3 my-6 p-6">
     <div class="grid grid-cols-1 gap-6">
       <div class="text-center">
-        <h2 class="text-white text-xl font-semibold mb-4">БАР</h2>
-        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 mb-4">
-          <p class="text-white/90 text-xs leading-relaxed italic">
+        <h2 class="text-2xl font-semibold mb-4">БАР</h2>
+        <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 mb-4">
+          <p class="text-xs leading-relaxed italic">
             "Современная миксология встречается с нордическими традициями в нашем баре. 
             Мы применяем современные методы обработки ингредиентов для создания неповторимых вкусовых композиций. Березовый сок, можжевеловые ягоды, 
             морская соль — все эти элементы северной природы становятся основой для 
             инновационных коктейлей, которые удивят даже самых искушенных гостей."
           </p>
-          <p class="text-white text-xs mt-2 font-semibold">— Леонид, шеф-бармен</p>
+          <p class="text-xs mt-2 font-semibold">— Леонид, шеф-бармен</p>
         </div>
-        <a href="/files/menu.pdf" target="_blank" class="block bg-[#5E8C61] text-white py-3 px-6 rounded-lg font-semibold hover:bg-[#4a7350] transition duration-200">
+        <a href="/files/menu.pdf" target="_blank" class="block bg-[#F9F5EF] py-3 px-6 rounded-lg font-semibold hover:bg-[#4a7350] transition duration-200">
           Барная карта
         </a>
       </div>
       <div class="grid grid-cols-2 gap-4">
         <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden">
-          <img src="bar1.jpeg" alt="Напиток" class="w-full h-full object-cover"/>
+          <img src="files/Bar1.webp" alt="Напиток" class="w-full h-full object-cover"/>
         </div>
         <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden">
-          <img src="bar2.jpeg" alt="Напиток" class="w-full h-full object-cover"/>
+          <img src="files/Bar2.webp" alt="Напиток" class="w-full h-full object-cover"/>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Интерьер -->
-  <section class="bg-[#E6E6E6] rounded-xl mx-3 my-6 p-6">
-    <div class="bg-[#191919] rounded-xl p-4 mb-6">
-      <h2 class="text-white text-center font-semibold">ИНТЕРЬЕР</h2>
+  <section class="bg-[#E3D5B9] rounded-xl mx-3 my-6 p-6">
+    <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 mb-6">
+      <h2 class="text-center text-xl font-semibold">ИНТЕРЬЕР</h2>
     </div>
     <div class="grid grid-cols-2 gap-4 mb-4">
       <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden">
-        <img src="int5.JPG" 
+        <img src="files/Int1.webp" 
              alt="Интерьер" 
              class="w-full h-full object-cover clickable-image" 
              onclick="openModal('modal1')"/>
       </div>
       <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden">
-        <img src="int3.jpeg" 
+        <img src="files/Int2.webp" 
              alt="Интерьер" 
              class="w-full h-full object-cover clickable-image" 
              onclick="openModal('modal2')"/>
@@ -277,13 +288,13 @@
     </div>
     <div class="grid grid-cols-2 gap-4">
       <div class="aspect-[1/1.5] bg-gray-200 rounded-lg overflow-hidden">
-        <img src="int4.JPEG" 
+        <img src="files/Int3.webp" 
              alt="Интерьер" 
              class="w-full h-full object-cover clickable-image" 
              onclick="openModal('modal3')"/>
       </div>
       <div class="aspect-[1/1.5] bg-gray-200 rounded-lg overflow-hidden">
-        <img src="int2.JPG" 
+        <img src="files/Int4.webp" 
              alt="Интерьер" 
              class="w-full h-full object-cover clickable-image" 
              onclick="openModal('modal4')"/>
@@ -327,11 +338,11 @@
   </div>
 
   <!-- Секция контактов -->
-  <section id="contacts" class="bg-[#904d30] rounded-xl mx-3 my-6 p-6">
+  <section id="contacts" class="bg-[#5E8C61] rounded-xl mx-3 my-6 p-6">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div>
-        <div class="bg-[#191919] rounded-xl p-4 mb-4">
-          <h2 class="text-white text-center font-semibold">КОНТАКТЫ</h2>
+        <div class="bg-white/10 rounded-xl p-4 mb-4">
+          <h2 class="text-center text-white font-semibold">КОНТАКТЫ</h2>
         </div>
         <div class="space-y-4 text-xs text-white">
           <div>
@@ -365,8 +376,8 @@
         </div>
       </div>
       <div>
-        <div class="bg-[#191919] rounded-xl p-4 mb-4">
-          <h2 class="text-white text-center font-semibold">РЕЖИМ РАБОТЫ</h2>
+        <div class="bg-white/10 rounded-xl p-4 mb-4">
+          <h2 class="text-center text-white font-semibold">РЕЖИМ РАБОТЫ</h2>
         </div>
         <div class="text-center text-xs text-white font-semibold">
           <p>ул. Ильина, 8</p>
