@@ -1,14 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="utf-8"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
+<!-- SEO Meta Tags -->
+<title>Ресторан Гусли - Нордическая кухня в Великом Новгороде | Забронировать стол</title>
+<meta name="description" content="Ресторан Гусли в Великом Новгороде - нордическая кухня, авторские коктейли, уютная атмосфера. Бронирование столов по телефону +7 (8162) 60-01-12. Адрес: ул. Ильина, 8"/>
+<meta name="keywords" content="ресторан гусли, великий новгород, нордическая кухня, авторские коктейли, забронировать стол, ресторан новгород, кухня новгород"/>
+<meta name="author" content="Ресторан Гусли"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://gusli-restaurant.ru"/>
+
+<!-- Open Graph Tags -->
+<meta property="og:title" content="Ресторан Гусли - Нордическая кухня в Великом Новгороде"/>
+<meta property="og:description" content="Место где традиции и современность идут рука об руку. Нордическая кухня, авторские коктейли, уютная атмосфера"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://gusli-restaurant.ru"/>
+<meta property="og:image" content="https://gusli-restaurant.ru/files/Gusli.webp"/>
+<meta property="og:locale" content="ru_RU"/>
+<meta property="og:site_name" content="Ресторан Гусли"/>
+
+<!-- Twitter Card Tags -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Ресторан Гусли - Нордическая кухня в Великом Новгороде"/>
+<meta name="twitter:description" content="Место где традиции и современность идут рука об руку. Нордическая кухня, авторские коктейли"/>
+<meta name="twitter:image" content="https://gusli-restaurant.ru/files/Gusli.webp"/>
+
+<!-- Local Business Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Ресторан Гусли",
+  "description": "Нордическая кухня и авторские коктейли в уютной атмосфере Великого Новгорода",
+  "url": "https://gusli-restaurant.ru",
+  "telephone": "+7 (8162) 60-01-12",
+  "email": "guslix4@mail.ru",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "ул. Ильина, 8",
+    "addressLocality": "Великий Новгород",
+    "addressCountry": "RU"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 58.518755,
+    "longitude": 31.287895
+  },
+  "openingHours": [
+    "Su-Th 12:00-00:00",
+    "Fr-Sa 12:00-01:00"
+  ],
+  "servesCuisine": "Нордическая кухня",
+  "priceRange": "$$",
+  "image": "https://gusli-restaurant.ru/files/Gusli.webp",
+  "hasMenu": "https://gusli-restaurant.ru/files/menu.pdf"
+}
+</script>
+
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com/3.2.0"></script>
 <style>
+   /* Smooth scrolling for the entire page */
+   html {
+       scroll-behavior: smooth;
+   }
+
    a,
    button,
    input,
@@ -39,6 +100,12 @@
        list-style-type: none;
        margin: 0;
        padding: 0;
+   }
+
+   /* Enhanced smooth scrolling with momentum */
+   body {
+       scroll-behavior: smooth;
+       -webkit-overflow-scrolling: touch;
    }
 
    /* Адаптивные стили */
@@ -133,14 +200,33 @@
         
         .clickable-image {
             cursor: pointer;
-            transition: transform 0.2s ease;
+            transition: transform 0.3s ease;
         }
         
         .clickable-image:hover {
-            transform: scale(1.05);
+            transform: scale(1.02);
+        }
+
+        /* Smooth transitions for navigation */
+        nav a {
+            transition: color 0.3s ease;
+        }
+
+        /* Smooth button transitions */
+        .btn-transition {
+            transition: all 0.3s ease;
+        }
+
+        .btn-transition:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Smooth scroll offset for fixed navigation */
+        section {
+            scroll-margin-top: 80px;
         }
 </style>
-<title>ГУСЛИ</title>
 </head>
 <body>
 <div class="main-container">
@@ -149,21 +235,21 @@
     <div class="flex justify-between items-center text-xs">
       <div class="flex items-center">
         <div class="w-11 h-19 mr-4 text-[#904d30] font-bold text-lg">
-          <img src="files/logo.svg"/>
+          <img src="files/logo.svg" alt="Логотип ресторана Гусли"/>
         </div>
       </div>
       <div class="flex space-x-4">
-        <a href="#about" class="text-[#191919] hover:text-[#904d30]">О НАС</a>
-        <a href="/kitchen/">Кухня</a>
-        <a href="/bar/">Бар</a>
-        <a href="#contacts" class="text-[#191919] hover:text-[#904d30]">КОНТАКТЫ</a>
+        <a href="/" class="text-[#191919] hover:text-[#904d30]" aria-label="О нас">О НАС</a>
+        <a href="/kitchen/" class="text-[#191919] hover:text-[#904d30]" aria-label="Кухня">КУХНЯ</a>
+        <a href="/bar/" class="text-[#191919] hover:text-[#904d30]" aria-label="Бар">БАР</a>
+        <a href="/" class="text-[#191919] hover:text-[#904d30]" aria-label="Контакты">КОНТАКТЫ</a>
       </div>
     </div>
   </nav>
 
   <!-- Главная секция -->
   <section class="relative h-[460px] mt-16 mx-3 rounded-xl overflow-hidden">
-    <img class="w-full h-full object-cover" src="files/Gusli.webp" alt="Ресторан Гусли"/>
+    <img class="w-full h-full object-cover" src="files/Gusli.webp" alt="Интерьер ресторана Гусли в Великом Новгороде"/>
     <div class="absolute inset-0 bg-[#323232]/50"></div>
     <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white px-8">
       <h1 class="text-3xl md:text-4xl lg:text-5xl leading-tight mb-8 font-light">
@@ -172,13 +258,13 @@
           рука об руку</span>
       </h1>
       <div class="space-y-4 w-full max-w-sm">
-        <a href="/files/menu.pdf" target="_blank" class="block bg-[#563729]/80 text-white py-3 px-8 rounded-lg font-semibold hover:bg-[#7a4028] transition duration-200">
+        <a href="/kitchen/" target="_blank" class="block bg-[#563729]/80 text-white py-3 px-8 rounded-lg font-semibold hover:bg-[#7a4028] btn-transition" aria-label="Скачать меню кухни">
           Меню кухни
         </a>
-        <a href="/files/menu.pdf" target="_blank" class="block bg-[#563729]/80 text-white py-3 px-8 rounded-lg font-semibold hover:bg-[#7a4028] transition duration-200">
+        <a href="/bar" target="_blank" class="block bg-[#563729]/80 text-white py-3 px-8 rounded-lg font-semibold hover:bg-[#7a4028] btn-transition" aria-label="Скачать барную карту">
           Барная карта
         </a>
-        <a href="tel:+78162600112" class="block bg-[#563729]/80 text-white py-3 px-8 rounded-lg font-semibold hover:bg-[#7a4028] transition duration-200">
+        <a href="tel:+78162600112" class="block bg-[#563729]/80 text-white py-3 px-8 rounded-lg font-semibold hover:bg-[#7a4028] btn-transition" aria-label="Позвонить для бронирования стола">
           Забронировать стол
         </a>
       </div>
@@ -190,7 +276,7 @@
     <div class="text-center mb-6">
       <h2 class="text-white text-2xl mb-4">О РЕСТОРАНЕ ГУСЛИ</h2>
       <p class="text-white/90 text-sm leading-relaxed">
-        Ресторан «Гусли» — это воплощение нордической философии кулинарии в самом сердце города. 
+        Ресторан «Гусли» — это воплощение нордической философии кулинарии в самом сердце Великого Новгорода. 
         Мы верим в силу локальных продуктов и традиционных методов приготовления, которые раскрывают 
         истинный вкус северной природы.
       </p>
@@ -209,7 +295,7 @@
   <section id="kitchen" class="bg-[#E3D5B9] rounded-xl mx-3 my-6 p-6">
     <div class="grid grid-cols-1 gap-6">
       <div class="text-center">
-        <h2 class="text-2xl font-semibold mb-4">КУХНЯ</h2>
+        <h2 class="text-2xl font-semibold mb-4">НОРДИЧЕСКАЯ КУХНЯ</h2>
         <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 mb-4">
           <p class="text-xs leading-relaxed italic">
             "Нордическая кухня — это не просто тренд, это философия. Мы работаем с тем, 
@@ -218,21 +304,21 @@
             копчение, соление — эти древние техники помогают нам создавать блюда, 
             которые рассказывают историю нашего региона."
           </p>
-          <p class="text-xs mt-2 font-semibold">— Данила, шеф-повар</p>
+          <p class="text-xs mt-2 font-semibold">— Данила Писарев, шеф-повар</p>
         </div>
-        <a href="/files/menu.pdf" target="_blank" class="block bg-[#F9F5EF] text-[#191919] py-3 px-6 rounded-lg font-semibold hover:bg-[#d6d6d6] transition duration-200">
+        <a href="/kitchen/" target="_blank" class="block bg-[#F9F5EF] text-[#191919] py-3 px-6 rounded-lg font-semibold hover:bg-[#d6d6d6] btn-transition" aria-label="Скачать меню кухни">
           Меню кухни
         </a>
       </div>
       <div class="grid grid-cols-3 gap-3">
         <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden">
-          <img src="files/Kuh1.webp" alt="Блюдо" class="w-full h-full object-cover"/>
+          <img src="files/Kuh1.webp" alt="Авторское блюдо нордической кухни" class="w-full h-full object-cover"/>
         </div>
         <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden">
-          <img src="files/Kuh2.webp" alt="Блюдо" class="w-full h-full object-cover"/>
+          <img src="files/Kuh2.webp" alt="Фирменное блюдо от шеф-повара" class="w-full h-full object-cover"/>
         </div>
         <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden">
-          <img src="files/Kuh3.webp" alt="Блюдо" class="w-full h-full object-cover"/>
+          <img src="files/Kuh3.webp" alt="Сезонное блюдо ресторана Гусли" class="w-full h-full object-cover"/>
         </div>
       </div>
     </div>
@@ -242,7 +328,7 @@
   <section id="bar" class="bg-[#E3D5B9] rounded-xl mx-3 my-6 p-6">
     <div class="grid grid-cols-1 gap-6">
       <div class="text-center">
-        <h2 class="text-2xl font-semibold mb-4">БАР</h2>
+        <h2 class="text-2xl font-semibold mb-4">АВТОРСКИЕ КОКТЕЙЛИ</h2>
         <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 mb-4">
           <p class="text-xs leading-relaxed italic">
             "Современная миксология встречается с нордическими традициями в нашем баре. 
@@ -250,38 +336,38 @@
             морская соль — все эти элементы северной природы становятся основой для 
             инновационных коктейлей, которые удивят даже самых искушенных гостей."
           </p>
-          <p class="text-xs mt-2 font-semibold">— Леонид, шеф-бармен</p>
+          <p class="text-xs mt-2 font-semibold">— Леонид Леонтьев, шеф-бармен</p>
         </div>
-        <a href="/files/menu.pdf" target="_blank" class="block bg-[#F9F5EF] py-3 px-6 rounded-lg font-semibold hover:bg-[#4a7350] transition duration-200">
+        <a href="/bar/" target="_blank" class="block bg-[#F9F5EF] py-3 px-6 rounded-lg font-semibold hover:bg-[#4a7350] btn-transition" aria-label="Скачать барную карту">
           Барная карта
         </a>
       </div>
       <div class="grid grid-cols-2 gap-4">
         <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden">
-          <img src="files/Bar1.webp" alt="Напиток" class="w-full h-full object-cover"/>
+          <img src="files/Bar1.webp" alt="Авторский коктейль с северными ингредиентами" class="w-full h-full object-cover"/>
         </div>
         <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden">
-          <img src="files/Bar2.webp" alt="Напиток" class="w-full h-full object-cover"/>
+          <img src="files/Bar2.webp" alt="Фирменный коктейль от шеф-бармена" class="w-full h-full object-cover"/>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Интерьер -->
-  <section class="bg-[#E3D5B9] rounded-xl mx-3 my-6 p-6">
+  <section id="interior" class="bg-[#E3D5B9] rounded-xl mx-3 my-6 p-6">
     <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 mb-6">
-      <h2 class="text-center text-xl font-semibold">ИНТЕРЬЕР</h2>
+      <h2 class="text-center text-xl font-semibold">ИНТЕРЬЕР РЕСТОРАНА</h2>
     </div>
     <div class="grid grid-cols-2 gap-4 mb-4">
       <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden">
         <img src="files/Int1.webp" 
-             alt="Интерьер" 
+             alt="Интерьер ресторана Гусли - основной зал" 
              class="w-full h-full object-cover clickable-image" 
              onclick="openModal('modal1')"/>
       </div>
       <div class="aspect-square bg-gray-200 rounded-lg overflow-hidden">
         <img src="files/Int2.webp" 
-             alt="Интерьер" 
+             alt="Интерьер ресторана Гусли - барная стойка" 
              class="w-full h-full object-cover clickable-image" 
              onclick="openModal('modal2')"/>
       </div>
@@ -289,13 +375,13 @@
     <div class="grid grid-cols-2 gap-4">
       <div class="aspect-[1/1.5] bg-gray-200 rounded-lg overflow-hidden">
         <img src="files/Int3.webp" 
-             alt="Интерьер" 
+             alt="Интерьер ресторана Гусли - уютная атмосфера" 
              class="w-full h-full object-cover clickable-image" 
              onclick="openModal('modal3')"/>
       </div>
       <div class="aspect-[1/1.5] bg-gray-200 rounded-lg overflow-hidden">
         <img src="files/Int4.webp" 
-             alt="Интерьер" 
+             alt="Интерьер ресторана Гусли - зона для гостей" 
              class="w-full h-full object-cover clickable-image" 
              onclick="openModal('modal4')"/>
       </div>
@@ -309,31 +395,31 @@
   </section>
 
   <!-- Модальные окна -->
-  <div id="modal1" class="modal" onclick="closeModal('modal1')">
-      <span class="close" onclick="closeModal('modal1')">&times;</span>
+  <div id="modal1" class="modal" onclick="closeModal('modal1')" aria-label="Модальное окно с изображением интерьера">
+      <span class="close" onclick="closeModal('modal1')" aria-label="Закрыть">&times;</span>
       <div class="modal-content" onclick="event.stopPropagation()">
-          <img src="int5.JPG" alt="Интерьер полный размер">
+          <img src="files/Int1.webp" alt="Интерьер ресторана Гусли - полный размер">
       </div>
   </div>
 
-  <div id="modal2" class="modal" onclick="closeModal('modal2')">
-      <span class="close" onclick="closeModal('modal2')">&times;</span>
+  <div id="modal2" class="modal" onclick="closeModal('modal2')" aria-label="Модальное окно с изображением интерьера">
+      <span class="close" onclick="closeModal('modal2')" aria-label="Закрыть">&times;</span>
       <div class="modal-content" onclick="event.stopPropagation()">
-          <img src="int3.jpeg" alt="Интерьер полный размер">
+          <img src="files/Int2.webp" alt="Интерьер ресторана Гусли - полный размер">
       </div>
   </div>
 
-  <div id="modal3" class="modal" onclick="closeModal('modal3')">
-      <span class="close" onclick="closeModal('modal3')">&times;</span>
+  <div id="modal3" class="modal" onclick="closeModal('modal3')" aria-label="Модальное окно с изображением интерьера">
+      <span class="close" onclick="closeModal('modal3')" aria-label="Закрыть">&times;</span>
       <div class="modal-content" onclick="event.stopPropagation()">
-          <img src="int4.JPEG" alt="Интерьер полный размер">
+          <img src="files/Int3.webp" alt="Интерьер ресторана Гусли - полный размер">
       </div>
   </div>
 
-  <div id="modal4" class="modal" onclick="closeModal('modal3')">
-      <span class="close" onclick="closeModal('modal3')">&times;</span>
+  <div id="modal4" class="modal" onclick="closeModal('modal4')" aria-label="Модальное окно с изображением интерьера">
+      <span class="close" onclick="closeModal('modal4')" aria-label="Закрыть">&times;</span>
       <div class="modal-content" onclick="event.stopPropagation()">
-          <img src="int2.JPG" alt="Интерьер полный размер">
+          <img src="files/Int4.webp" alt="Интерьер ресторана Гусли - полный размер">
       </div>
   </div>
 
@@ -347,31 +433,31 @@
         <div class="space-y-4 text-xs text-white">
           <div>
             <p class="font-semibold">Бронирование столов</p>
-            <p>+7 (8162) 60-01-12</p>
+            <p><a href="tel:+78162600112" class="hover:underline">+7 (8162) 60-01-12</a></p>
           </div>
           <div>
-            <p class="font-semibold">Сотрудничество</p>
-            <p>Алексей Михайлишин, маркетинг</p>
-            <p>+7 (951) 723-25-56</p>
+            <p class="font-semibold">Управляющая</p>
+            <p>Кристина Михайлишина</p>
+            <p><a href="tel:+79517232556" class="hover:underline">+7 (951) 723-25-56</a></p>
           </div>
           <div>
-            <p class="font-semibold">Сотрудничество</p>
-            <p>Кристина Михайлишина, управляющая</p>
-            <p>+7 (951) 723-25-56</p>
+            <p class="font-semibold">Маркетинг</p>
+            <p>Алексей Михайлишин</p>
+            <p><a href="tel:+79517232556" class="hover:underline">+7 (951) 723-25-56</a></p>
           </div>
           <div>
-            <p class="font-semibold">Сотрудничество</p>
-            <p>Леонид Леонтьев, шеф-бармен</p>
-            <p>+7 (951) 723-25-56</p>
+            <p class="font-semibold">Шеф-бармен</p>
+            <p>Леонид Леонтьев</p>
+            <p><a href="tel:+79517232556" class="hover:underline">+7 (951) 723-25-56</a></p>
           </div>
           <div>
-            <p class="font-semibold">Сотрудничество</p>
-            <p>Данила Писарев, шеф-повар</p>
-            <p>+7 (951) 723-25-56</p>
+            <p class="font-semibold">Шеф-повар</p>
+            <p>Данила Писарев</p>
+            <p><a href="tel:+79517232556" class="hover:underline">+7 (951) 723-25-56</a></p>
           </div>
           <div>
-            <p class="font-semibold">Почта</p>
-            <p>guslix4@mail.ru</p>
+            <p class="font-semibold">Email</p>
+            <p><a href="mailto:guslix4@mail.ru" class="hover:underline">guslix4@mail.ru</a></p>
           </div>
         </div>
       </div>
@@ -380,7 +466,7 @@
           <h2 class="text-center text-white font-semibold">РЕЖИМ РАБОТЫ</h2>
         </div>
         <div class="text-center text-xs text-white font-semibold">
-          <p>ул. Ильина, 8</p>
+          <p><strong>ул. Ильина, 8, Великий Новгород</strong></p>
           <br/>
           <p>ВС - ЧТ.........12:00 - 00:00</p>
           <p>ПТ - СБ..........12:00 - 01:00</p>
@@ -395,27 +481,33 @@
         src="https://yandex.ru/map-widget/v1/?ll=31.287942%2C58.518358&mode=poi&poi%5Bpoint%5D=31.287895%2C58.518755&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D48751409696&z=18.8"
         frameborder="0" 
         allowfullscreen="true" 
-        class="w-full h-full">
+        class="w-full h-full"
+        title="Карта расположения ресторана Гусли">
     </iframe>
   </section>
 
   <!-- Футер -->
   <footer class="text-center text-[#191919] text-xs p-4">
-    <p>ООО "Гусли" </p>
-    <p>Юр. адрес: г. Великий Новгород, ул. Ильина, д. 8</p>
+    <p>ООО "Гусли" - Ресторан нордической кухни</p>
+    <p>Адрес: г. Великий Новгород, ул. Ильина, д. 8</p>
+    <p>Телефон: <a href="tel:+78162600112" class="hover:underline">+7 (8162) 60-01-12</a></p>
   </footer>
 </div>
 
 <script>
-// Плавная прокрутка к секциям
+// Enhanced smooth scrolling with custom easing
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+            const headerOffset = 80;
+            const elementPosition = target.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
             });
         }
     });
@@ -440,6 +532,25 @@ document.addEventListener('keydown', function(event) {
             activeModal.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
+    }
+});
+
+// Smooth scroll on page load for hash links
+window.addEventListener('load', function() {
+    if (window.location.hash) {
+        setTimeout(() => {
+            const target = document.querySelector(window.location.hash);
+            if (target) {
+                const headerOffset = 80;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }, 100);
     }
 });
 </script>
