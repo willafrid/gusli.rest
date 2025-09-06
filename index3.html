@@ -1,0 +1,592 @@
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Phone, Clock, MapPin, Mail, ChefHat, Wine, Users, Star, Instagram, Facebook } from 'lucide-react';
+
+const GusliRestaurant = () => {
+  const [currentPage, setCurrentPage] = useState('home');
+  const [selectedModal, setSelectedModal] = useState(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  const menuItems = [
+    {
+      category: "ЗАКУСКИ",
+      items: [
+        {
+          name: "Тартар из оленины",
+          description: "С маринованными лесными грибами и ржаным крекером",
+          price: "850"
+        },
+        {
+          name: "Копченый судак",
+          description: "С картофельным муссом и икрой щуки",
+          price: "720"
+        },
+        {
+          name: "Сельдь нордик",
+          description: "Малосольная сельдь с варёной свёклой и сметанным муссом",
+          price: "690"
+        }
+      ]
+    },
+    {
+      category: "СУПЫ",
+      items: [
+        {
+          name: "Уха по-новгородски",
+          description: "Наваристый суп из судака и щуки с пшенной кашей",
+          price: "590"
+        },
+        {
+          name: "Крем-суп из тыквы",
+          description: "С семечками подсолнуха и тыквенным маслом",
+          price: "520"
+        }
+      ]
+    },
+    {
+      category: "ОСНОВНЫЕ БЛЮДА",
+      items: [
+        {
+          name: "Стейк из лося",
+          description: "Средней прожарки с корнеплодами и брусничным соусом",
+          price: "1490"
+        },
+        {
+          name: "Щука фаршированная",
+          description: "Традиционное блюдо с гречневой кашей и овощами",
+          price: "1290"
+        },
+        {
+          name: "Каре барашка",
+          description: "В травяной корочке с печёными овощами",
+          price: "1590"
+        }
+      ]
+    },
+    {
+      category: "ДЕСЕРТЫ",
+      items: [
+        {
+          name: "Мёд в сотах",
+          description: "С творожным муссом и орехами",
+          price: "420"
+        },
+        {
+          name: "Пирог с морошкой",
+          description: "Традиционная выпечка с северными ягодами",
+          price: "390"
+        }
+      ]
+    }
+  ];
+
+  const cocktailItems = [
+    {
+      category: "АВТОРСКИЕ КОКТЕЙЛИ",
+      items: [
+        {
+          name: "Северное сияние",
+          description: "Водка, березовый сок, можжевеловые ягоды, лайм",
+          price: "650"
+        },
+        {
+          name: "Новгородский мёд",
+          description: "Виски, медовый сироп, лимон, тимьян",
+          price: "720"
+        },
+        {
+          name: "Лесная ягода",
+          description: "Джин, морошковый ликер, тоник, розмарин",
+          price: "680"
+        }
+      ]
+    }
+  ];
+
+  const interiorImages = [
+    { src: "files/Int1.webp", alt: "Основной зал" },
+    { src: "files/Int2.webp", alt: "Барная стойка" },
+    { src: "files/Int3.webp", alt: "Атмосфера" },
+    { src: "files/Int4.webp", alt: "Интерьер" }
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (selectedModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [selectedModal]);
+
+  const Navigation = () => (
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      scrolled ? 'bg-black/90 backdrop-blur-md py-2' : 'bg-transparent py-4'
+    }`}>
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex justify-between items-center">
+          <div 
+            className="text-2xl font-light tracking-widest text-white cursor-pointer hover:text-amber-400 transition-colors"
+            onClick={() => setCurrentPage('home')}
+          >
+            ГУСЛИ
+          </div>
+          
+          <div className="hidden md:flex items-center space-x-1">
+            {[
+              { key: 'home', label: 'О НАС' },
+              { key: 'kitchen', label: 'КУХНЯ' },
+              { key: 'bar', label: 'БАР' },
+              { key: 'contacts', label: 'КОНТАКТЫ' }
+            ].map(({ key, label }) => (
+              <button
+                key={key}
+                onClick={() => setCurrentPage(key)}
+                className={`px-4 py-2 text-xs font-medium tracking-wider transition-all duration-300 rounded-full ${
+                  currentPage === key 
+                    ? 'text-black bg-white' 
+                    : 'text-white/80 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+            
+            <a
+              href="tel:+78162600112"
+              className="ml-6 px-6 py-2 bg-amber-600 hover:bg-amber-700 text-white text-xs font-medium tracking-wider rounded-full transition-all duration-300 hover:scale-105"
+            >
+              БРОНЬ
+            </a>
+          </div>
+
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden p-2 text-white"
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+
+        {isMenuOpen && (
+          <div className="md:hidden mt-4 bg-black/95 backdrop-blur-md rounded-2xl p-4">
+            {[
+              { key: 'home', label: 'О НАС' },
+              { key: 'kitchen', label: 'КУХНЯ' },
+              { key: 'bar', label: 'БАР' },
+              { key: 'contacts', label: 'КОНТАКТЫ' }
+            ].map(({ key, label }) => (
+              <button
+                key={key}
+                onClick={() => {
+                  setCurrentPage(key);
+                  setIsMenuOpen(false);
+                }}
+                className={`block w-full text-left px-4 py-3 text-sm font-medium tracking-wide transition-colors rounded-lg ${
+                  currentPage === key ? 'text-amber-400' : 'text-white/80 hover:text-white'
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    </nav>
+  );
+
+  const Modal = ({ isOpen, onClose, imageSrc, alt }) => {
+    if (!isOpen) return null;
+
+    return (
+      <div 
+        className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+        onClick={onClose}
+      >
+        <div 
+          className="relative max-w-4xl max-h-full"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button
+            onClick={onClose}
+            className="absolute -top-12 right-0 text-white hover:text-amber-400 transition-colors"
+          >
+            <X size={32} />
+          </button>
+          <img
+            src={imageSrc}
+            alt={alt}
+            className="max-w-full max-h-[85vh] object-contain rounded-lg"
+          />
+        </div>
+      </div>
+    );
+  };
+
+  const HomePage = () => (
+    <div className="min-h-screen bg-black">
+      {/* Hero Section */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center scale-110"
+          style={{
+            backgroundImage: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url("files/Gusli.webp")',
+          }}
+        />
+        <div className="relative z-10 text-center text-white px-6 max-w-5xl mx-auto">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-light mb-6 leading-tight tracking-wider">
+            НОРДИЧЕСКАЯ<br/>КУХНЯ
+          </h1>
+          <p className="text-lg md:text-xl font-light mb-12 opacity-90 max-w-2xl mx-auto leading-relaxed">
+            Где традиции встречаются с современностью в самом сердце Великого Новгорода
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button
+              onClick={() => setCurrentPage('kitchen')}
+              className="group px-8 py-3 bg-transparent border border-white/40 text-white font-light tracking-wider hover:bg-white hover:text-black transition-all duration-300 rounded-full min-w-[180px]"
+            >
+              МЕНЮ
+            </button>
+            <button
+              onClick={() => setCurrentPage('bar')}
+              className="group px-8 py-3 bg-transparent border border-white/40 text-white font-light tracking-wider hover:bg-white hover:text-black transition-all duration-300 rounded-full min-w-[180px]"
+            >
+              КОКТЕЙЛИ
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-light text-gray-800 mb-6 leading-tight">
+                  Философия<br/>нордической кухни
+                </h2>
+                <div className="w-16 h-px bg-amber-600 mb-8"></div>
+              </div>
+              <div className="space-y-6 text-gray-600 leading-relaxed">
+                <p className="text-lg">
+                  Ресторан «Гусли» — воплощение нордической философии кулинарии, 
+                  основанной на принципах устойчивого развития и уважения к природе.
+                </p>
+                <p>
+                  Мы сотрудничаем с местными фермерами, используем сезонные ингредиенты 
+                  и применяем традиционные техники консервации и ферментации.
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-3 gap-3">
+              <div className="aspect-[4/5] bg-gray-100 rounded-lg overflow-hidden">
+                <img src="files/Kuh1.webp" alt="Нордическая кухня" className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-[4/5] bg-gray-100 rounded-lg overflow-hidden mt-8">
+                <img src="files/Kuh2.webp" alt="Авторские блюда" className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-[4/5] bg-gray-100 rounded-lg overflow-hidden">
+                <img src="files/Kuh3.webp" alt="Сезонные ингредиенты" className="w-full h-full object-cover" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Chef Quote */}
+      <section className="py-20 px-6 bg-amber-50">
+        <div className="max-w-4xl mx-auto text-center">
+          <blockquote className="text-2xl md:text-3xl font-light text-gray-700 mb-8 leading-relaxed italic">
+            "Нордическая кухня — это философия. Мы работаем с тем, 
+            что дает нам наша земля"
+          </blockquote>
+          <cite className="text-sm font-medium text-gray-500 tracking-wider">ДАНИЛА ПИСАРЕВ, ШЕФ-ПОВАР</cite>
+        </div>
+      </section>
+
+      {/* Bar Section */}
+      <section className="py-24 px-6 bg-gray-900 text-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="aspect-[3/4] bg-gray-700 rounded-lg overflow-hidden">
+                <img src="files/Bar1.webp" alt="Авторские коктейли" className="w-full h-full object-cover" />
+              </div>
+              <div className="aspect-[3/4] bg-gray-700 rounded-lg overflow-hidden mt-8">
+                <img src="files/Bar2.webp" alt="Барная программа" className="w-full h-full object-cover" />
+              </div>
+            </div>
+            <div className="space-y-8">
+              <div>
+                <h2 className="text-4xl md:text-5xl font-light mb-6 leading-tight">
+                  Авторские<br/>коктейли
+                </h2>
+                <div className="w-16 h-px bg-amber-600 mb-8"></div>
+              </div>
+              <blockquote className="text-lg italic text-gray-300 leading-relaxed">
+                "Современная миксология встречается с нордическими традициями. 
+                Березовый сок, можжевеловые ягоды — основа для инновационных коктейлей."
+              </blockquote>
+              <cite className="text-sm font-medium text-gray-400 tracking-wider">ЛЕОНИД ЛЕОНТЬЕВ, ШЕФ-БАРМЕН</cite>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Interior Section */}
+      <section className="py-24 px-6 bg-stone-100">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-light text-gray-800 mb-6">Интерьер</h2>
+            <div className="w-16 h-px bg-amber-600 mx-auto"></div>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {interiorImages.map((image, index) => (
+              <div
+                key={index}
+                className="aspect-[4/5] bg-gray-200 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-500"
+                onClick={() => setSelectedModal({ src: image.src, alt: image.alt })}
+              >
+                <img 
+                  src={image.src} 
+                  alt={image.alt}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+
+  const MenuPage = ({ items, title, icon: Icon }) => (
+    <div className="min-h-screen bg-white pt-20">
+      <div className="max-w-4xl mx-auto px-6 py-16">
+        <div className="text-center mb-16">
+          <div className="flex justify-center items-center gap-4 mb-6">
+            <Icon size={32} className="text-amber-600" />
+            <h1 className="text-4xl md:text-5xl font-light text-gray-800 tracking-wide">{title}</h1>
+          </div>
+          <div className="w-16 h-px bg-amber-600 mx-auto"></div>
+        </div>
+
+        <div className="space-y-16">
+          {items.map((category, categoryIndex) => (
+            <div key={categoryIndex}>
+              <h2 className="text-xl font-light text-center mb-12 text-gray-600 tracking-widest uppercase border-b border-gray-200 pb-4">
+                {category.category}
+              </h2>
+              <div className="space-y-8">
+                {category.items.map((item, itemIndex) => (
+                  <div key={itemIndex} className="group py-6 border-b border-gray-100 last:border-b-0">
+                    <div className="flex justify-between items-start gap-6">
+                      <div className="flex-1">
+                        <h3 className="text-xl font-light text-gray-800 mb-3 group-hover:text-amber-600 transition-colors">
+                          {item.name}
+                        </h3>
+                        <p className="text-gray-500 text-sm leading-relaxed">
+                          {item.description}
+                        </p>
+                      </div>
+                      <div className="text-right flex-shrink-0">
+                        <div className="text-xl font-light text-amber-600">
+                          {item.price} ₽
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="text-center mt-16">
+          <a
+            href="tel:+78162600112"
+            className="inline-flex items-center gap-3 bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 rounded-full font-light tracking-wider transition-all duration-300 hover:scale-105"
+          >
+            <Phone size={20} />
+            БРОНИРОВАНИЕ
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+
+  const ContactsPage = () => (
+    <div className="min-h-screen bg-white pt-20">
+      <div className="max-w-6xl mx-auto px-6 py-16">
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-light text-gray-800 mb-6 tracking-wide">КОНТАКТЫ</h1>
+          <div className="w-16 h-px bg-amber-600 mx-auto"></div>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-16">
+          <div className="space-y-12">
+            <div>
+              <h2 className="text-xl font-light mb-6 text-gray-700 flex items-center gap-3">
+                <Phone className="text-amber-600" size={24} />
+                Бронирование
+              </h2>
+              <a
+                href="tel:+78162600112"
+                className="text-2xl font-light text-amber-600 hover:text-amber-700 transition-colors"
+              >
+                +7 (8162) 60-01-12
+              </a>
+            </div>
+
+            <div>
+              <h2 className="text-xl font-light mb-8 text-gray-700 flex items-center gap-3">
+                <Users className="text-amber-600" size={24} />
+                Команда
+              </h2>
+              <div className="space-y-6">
+                <div className="border-b border-gray-100 pb-4">
+                  <h3 className="font-light text-gray-700 mb-1">Кристина Михайлишина</h3>
+                  <p className="text-sm text-gray-500 mb-2">Управляющая</p>
+                  <a href="tel:+79052907464" className="text-amber-600 hover:text-amber-700 transition-colors">
+                    +7 (905) 290-74-64
+                  </a>
+                </div>
+                <div>
+                  <h3 className="font-light text-gray-700 mb-1">Алексей Михайлишин</h3>
+                  <p className="text-sm text-gray-500 mb-2">Маркетинг</p>
+                  <a href="tel:+79116166086" className="text-amber-600 hover:text-amber-700 transition-colors">
+                    +7 (911) 616-60-86
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-12">
+            <div>
+              <h2 className="text-xl font-light mb-6 text-gray-700 flex items-center gap-3">
+                <MapPin className="text-amber-600" size={24} />
+                Адрес
+              </h2>
+              <p className="text-lg font-light text-gray-600 mb-6">
+                ул. Ильина, 8, Великий Новгород
+              </p>
+              <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
+                <iframe 
+                  src="https://yandex.ru/map-widget/v1/?ll=31.287942%2C58.518358&mode=poi&poi%5Bpoint%5D=31.287895%2C58.518755&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D48751409696&z=14"
+                  className="w-full h-full border-0"
+                  title="Карта"
+                />
+              </div>
+            </div>
+
+            <div>
+              <h2 className="text-xl font-light mb-6 text-gray-700 flex items-center gap-3">
+                <Clock className="text-amber-600" size={24} />
+                Часы работы
+              </h2>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center py-2">
+                  <span className="text-gray-500">ВС - ЧТ</span>
+                  <span className="font-light text-gray-700">12:00 - 00:00</span>
+                </div>
+                <div className="flex justify-between items-center py-2 border-t border-gray-100">
+                  <span className="text-gray-500">ПТ - СБ</span>
+                  <span className="font-light text-gray-700">12:00 - 01:00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderCurrentPage = () => {
+    switch (currentPage) {
+      case 'home':
+        return <HomePage />;
+      case 'kitchen':
+        return <MenuPage items={menuItems} title="МЕНЮ КУХНИ" icon={ChefHat} />;
+      case 'bar':
+        return <MenuPage items={cocktailItems} title="БАРНАЯ КАРТА" icon={Wine} />;
+      case 'contacts':
+        return <ContactsPage />;
+      default:
+        return <HomePage />;
+    }
+  };
+
+  return (
+    <div className="min-h-screen">
+      <Navigation />
+      {renderCurrentPage()}
+      <Modal
+        isOpen={!!selectedModal}
+        onClose={() => setSelectedModal(null)}
+        imageSrc={selectedModal?.src}
+        alt={selectedModal?.alt}
+      />
+      
+      {/* Footer */}
+      <footer className="bg-black text-white py-16 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-12 mb-12">
+            <div>
+              <h3 className="text-2xl font-light tracking-widest text-amber-400 mb-4">ГУСЛИ</h3>
+              <p className="text-gray-400 font-light leading-relaxed">
+                Нордическая кухня в сердце Великого Новгорода
+              </p>
+            </div>
+            <div>
+              <h4 className="text-sm font-medium tracking-wider text-white mb-4 uppercase">Контакты</h4>
+              <div className="space-y-2 text-gray-400 font-light">
+                <p>ул. Ильина, 8</p>
+                <p>Великий Новгород</p>
+                <a href="tel:+78162600112" className="text-amber-400 hover:text-amber-300 transition-colors">
+                  +7 (8162) 60-01-12
+                </a>
+              </div>
+            </div>
+            <div>
+              <h4 className="text-sm font-medium tracking-wider text-white mb-4 uppercase">Часы работы</h4>
+              <div className="space-y-1 text-gray-400 font-light text-sm">
+                <p>ВС-ЧТ: 12:00 - 00:00</p>
+                <p>ПТ-СБ: 12:00 - 01:00</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-800 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <p className="text-xs text-gray-500 font-light">
+                © 2024 Ресторан Гусли. Все права защищены.
+              </p>
+              <div className="flex gap-4 mt-4 md:mt-0">
+                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                  <Instagram size={20} />
+                </a>
+                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                  <Facebook size={20} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default GusliRestaurant;

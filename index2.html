@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ресторан Гусли - Нордическая кухня в Великом Новгороде</title>
+    <meta name="description" content="Ресторан Гусли - место где традиции встречают современность. Нордическая кухня, авторские коктейли в сердце Великого Новгорода">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #5E8C61;
+            --secondary-beige: #E3D5B9;
+            --background-cream: #F9F5EF;
+            --dark-brown: #563729;
+            --text-dark: #191919;
+            --accent-red: #BE2420;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: var(--background-cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--dark-brown);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-green);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Page sections */
+        .page-section {
+            display: none;
+            min-height: 100vh;
+            padding-top: 100px;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-section {
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%235E8C61" width="1200" height="800"/><circle fill="%23E3D5B9" cx="300" cy="200" r="150" opacity="0.3"/><circle fill="%23563729" cx="900" cy="600" r="200" opacity="0.2"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4a7350;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(94, 140, 97, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--text-dark);
+        }
+
+        /* Content sections */
+        .content-section {
+            padding: 4rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--dark-brown);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin: 3rem 0;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+        }
+
+        .quote-card {
+            background: var(--secondary-beige);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-green);
+            font-style: italic;
+            position: relative;
+        }
+
+        .quote-card::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary-green);
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            opacity: 0.3;
+        }
+
+        .quote-author {
+            margin-top: 1rem;
+            font-weight: bold;
+            color: var(--dark-brown);
+        }
+
+        /* Grid layouts */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .image-card {
+            aspect-ratio: 4/3;
+            background: linear-gradient(45deg, var(--primary-green), var(--secondary-beige));
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .image-card:hover {
+            transform: scale(1.02);
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .image-card:hover .image-overlay {
+            transform: translateY(0);
+        }
+
+        /* Menu items */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .menu-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+        }
+
+        .menu-item h3 {
+            color: var(--dark-brown);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Contact section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .contact-card {
+            background: var(--primary-green);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-card a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-brown);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 1rem 2rem;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Smooth animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-delay-1 { animation-delay: 0.2s; }
+        .animate-delay-2 { animation-delay: 0.4s; }
+        .animate-delay-3 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="showPage('about')">ГУСЛИ</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" onclick="showPage('about')" class="nav-link active">О НАС</a></li>
+                <li><a href="#" onclick="showPage('kitchen')" class="nav-link">КУХНЯ</a></li>
+                <li><a href="#" onclick="showPage('bar')" class="nav-link">БАР</a></li>
+            </ul>
+            <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- О НАС -->
+    <section id="about" class="page-section active">
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1 class="fade-in">Место, где традиции<br>встречают современность</h1>
+                <p class="fade-in animate-delay-1">Ресторан нордической кухни в сердце Великого Новгорода</p>
+                <div class="hero-buttons fade-in animate-delay-2">
+                    <a href="#" onclick="showPage('kitchen')" class="btn btn-primary">Меню кухни</a>
+                    <a href="#" onclick="showPage('bar')" class="btn btn-secondary">Барная карта</a>
+                    <a href="tel:+78162600112" class="btn btn-primary">Забронировать</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">О ресторане Гусли</h2>
+                    <p class="section-subtitle">
+                        Воплощение нордической философии кулинарии в самом сердце Великого Новгорода
+                    </p>
+                </div>
+
+                <div class="two-column">
+                    <div class="card fade-in">
+                        <h3>Наша философия</h3>
+                        <p>Мы верим в силу локальных продуктов и традиционных методов приготовления, которые раскрывают истинный вкус северной природы. Каждое блюдо — это история о земле, на которой мы живем.</p>
+                    </div>
+                    <div class="card fade-in animate-delay-1">
+                        <h3>Устойчивое развитие</h3>
+                        <p>Сотрудничаем с местными фермерами, используем сезонные ингредиенты и применяем традиционные техники консервации и ферментации для создания уникальных вкусов.</p>
+                    </div>
+                </div>
+
+                <div class="quote-card fade-in">
+                    <p>"Нордическая кухня — это не просто тренд, это философия. Мы работаем с тем, что дает нам наша земля: корнеплоды, дикие травы, речная рыба, лесные грибы. Каждый ингредиент проходит через мои руки с особым вниманием."</p>
+                    <div class="quote-author">— Данила Писарев, шеф-повар</div>
+                </div>
+
+                <div class="image-grid">
+                    <div class="image-card">
+                        <div class="image-overlay">
+                            <h4>Основной зал</h4>
+                            <p>Уютная атмосфера с нордическим дизайном</p>
+                        </div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-overlay">
+                            <h4>Барная стойка</h4>
+                            <p>Современная миксология в традиционном стиле</p>
+                        </div>
+                    </div>
+                    <div class="image-card">
+                        <div class="image-overlay">
+                            <h4>Кухня</h4>
+                            <p>Открытая кухня с видом на процесс приготовления</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Контакты</h2>
+                </div>
+                
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <h3>Бронирование</h3>
+                        <p><a href="tel:+78162600112">+7 (8162) 60-01-12</a></p>
+                    </div>
+                    <div class="contact-card">
+                        <h3>Адрес</h3>
+                        <p>ул. Ильина, 8<br>Великий Новгород</p>
+                    </div>
+                    <div class="contact-card">
+                        <h3>Режим работы</h3>
+                        <p>ВС-ЧТ: 12:00-00:00<br>ПТ-СБ: 12:00-01:00</p>
+                    </div>
+                    <div class="contact-card">
+                        <h3>Управляющая</h3>
+                        <p>Кристина Михайлишина<br><a href="tel:+79052907464">+7 (905) 290-74-64</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- КУХНЯ -->
+    <section id="kitchen" class="page-section">
+        <div class="container">
+            <div class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Нордическая кухня</h2>
+                    <p class="section-subtitle">
+                        Авторские блюда от шеф-повара Данилы Писарева, основанные на традициях северной кулинарии
+                    </p>
+                </div>
+
+                <div class="quote-card">
+                    <p>"Ферментация, копчение, соление — эти древние техники помогают нам создавать блюда, которые рассказывают историю нашего региона. Каждый ингредиент проходит особую обработку для раскрытия максимального вкуса."</p>
+                    <div class="quote-author">— Данила Писарев, шеф-повар</div>
+                </div>
+
+                <div class="section-header" style="margin-top: 4rem;">
+                    <h3 class="section-title" style="font-size: 2rem;">Хлеб всему голова</h3>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h3>Тартин</h3>
+                        <p>Взбитое масло, песто из трав, мед или соты на домашнем хлебе</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Ржаная лепешка</h3>
+                        <p>С укропным майонезом, подается теплой</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Пирожки</h3>
+                        <p>Судак со сметаной копченой в дровяной печи</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Блины</h3>
+                        <p>Копченая сметана, щучья икра, мед, соты, ряженка</p>
+                    </div>
+                </div>
+
+                <div class="section-header" style="margin-top: 3rem;">
+                    <h3 class="section-title" style="font-size: 2rem;">Соления</h3>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h3>Моченые черри</h3>
+                        <p>Кориандр, укроп, традиционное мочение</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Малосольные огурцы</h3>
+                        <p>Лист смородины, укропное масло</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Лесные грибы</h3>
+                        <p>Новгородских лесов с ароматным маслом</p>
+                    </div>
+                </div>
+
+                <div class="section-header" style="margin-top: 3rem;">
+                    <h3 class="section-title" style="font-size: 2rem;">Закуски</h3>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h3>Лосось в свёкле</h3>
+                        <p>Засоленный желток, микс трав</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Ростбиф</h3>
+                        <p>Чёрная смородина, подается на тартине</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Тартар говядина</h3>
+                        <p>Моченая ягода, грюйер, подается с хлебом</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Паштет куриный</h3>
+                        <p>Луковый мармелад, домашние крекеры</p>
+                    </div>
+                </div>
+
+                <div class="section-header" style="margin-top: 3rem;">
+                    <h3 class="section-title" style="font-size: 2rem;">Основное</h3>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h3>Говядина томленая</h3>
+                        <p>Картофельное пюре, малосольные огурцы</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Утиная грудка</h3>
+                        <p>Перловка, вешенки, сезонные травы</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Свинина</h3>
+                        <p>Корень сельдерея, квас из ржаного хлеба</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Судак</h3>
+                        <p>Цветная капуста, лимон, сливочное масло</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Лосось</h3>
+                        <p>Корнеплоды, укроп, ароматное масло</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Пельмени</h3>
+                        <p>Свинина-говядина, копченая сметана, укус</p>
+                    </div>
+                </div>
+
+                <div class="section-header" style="margin-top: 3rem;">
+                    <h3 class="section-title" style="font-size: 2rem;">Десерты</h3>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h3>Сметанник</h3>
+                        <p>Смородина, домашняя сметана</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Панна котта ванильная</h3>
+                        <p>Крыжовник, молочный чипс</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Пряник</h3>
+                        <p>Ряженка, яблочное повидло</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- БАР -->
+    <section id="bar" class="page-section">
+        <div class="container">
+            <div class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Авторские коктейли</h2>
+                    <p class="section-subtitle">
+                        Современная миксология встречается с нордическими традициями
+                    </p>
+                </div>
+
+                <div class="quote-card">
+                    <p>"Современная миксология встречается с нордическими традициями в нашем баре. Березовый сок, можжевеловые ягоды, морская соль — все эти элементы северной природы становятся основой для инновационных коктейлей."</p>
+                    <div class="quote-author">— Леонид Леонтьев, шеф-бармен</div>
+                </div>
+
+                <div class="two-column" style="margin-top: 3rem;">
+                    <div class="card">
+                        <h3>Авторские коктейли</h3>
+                        <p>Уникальные рецепты с использованием северных ингредиентов: березового сока, можжевеловых ягод, морской соли, трав и кореньев. Каждый коктейль рассказывает свою историю.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Классические напитки</h3>
+                        <p>Традиционные коктейли в нашем исполнении с использованием премиальных спиртов и свежих ингредиентов. Безупречное качество и мастерство барменов.</p>
+                    </div>
+                </div>
+
+                <div class="section-header" style="margin-top: 4rem;">
+                    <h3 class="section-title" style="font-size: 2rem;">Нордические коктейли</h3>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h3>Лесной туман</h3>
+                        <p>Джин, березовый сок, можжевеловые ягоды, тимьян</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Северное сияние</h3>
+                        <p>Водка, облепиха, мед, розмарин, игристое вино</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Корень земли</h3>
+                        <p>Виски, сироп из хрена, яблочный сок, лимон</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Морская соль</h3>
+                        <p>Текила, морская соль, лайм, укроп, огуречный сок</p>
+                    </div>
+                </div>
+
+                <div class="section-header" style="margin-top: 3rem;">
+                    <h3 class="section-title" style="font-size: 2rem;">Классические коктейли</h3>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h3>Old Fashioned</h3>
+                        <p>Премиальный бурбон, сахарный сироп, биттер</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Negroni</h3>
+                        <p>Джин, Кампари, красный вермут, апельсин</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Moscow Mule</h3>
+                        <p>Водка премиум, имбирное пиво, лайм, мята</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Whiskey Sour</h3>
+                        <p>Виски, лимонный сок, сахарный сироп, яичный белок</p>
+                    </div>
+                </div>
+
+                <div class="section-header" style="margin-top: 3rem;">
+                    <h3 class="section-title" style="font-size: 2rem;">Винная карта</h3>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h3>Красные вина</h3>
+                        <p>Тщательно подобранная коллекция красных вин из Франции, Италии и России</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Белые вина</h3>
+                        <p>Свежие белые вина, идеально сочетающиеся с нашими блюдами из рыбы</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Игристые вина</h3>
+                        <p>Шампанское и просекко для особых моментов</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Крепкие напитки</h3>
+                        <p>Премиальные виски, водка, джин и другие спирты</p>
+                    </div>
+                </div>
+
+                <div class="section-header" style="margin-top: 3rem;">
+                    <h3 class="section-title" style="font-size: 2rem;">Безалкогольные напитки</h3>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <h3>Лесной чай</h3>
+                        <p>Травяной сбор с ягодами и медом</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Березовый лимонад</h3>
+                        <p>Березовый сок, мята, лимон, содовая</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Облепиховый морс</h3>
+                        <p>Домашний морс из свежих ягод облепихи</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Кофе</h3>
+                        <p>Эспресso, американо, капучино, латте</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Ресторан Гусли. Великий Новгород, ул. Ильина, 8</p>
+            <p>Телефон: <a href="tel:+78162600112">+7 (8162) 60-01-12</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            event.target.classList.add('active');
+            
+            // Close mobile menu if open
+            document.getElementById('navLinks').classList.remove('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navLinks = document.getElementById('navLinks');
+            const mobileBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (!navLinks.contains(event.target) && !mobileBtn.contains(event.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 30px rgba(0,0,0,0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.card, .menu-item, .contact-card, .image-card').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Phone number formatting for better UX
+        document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Add visual feedback
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html
